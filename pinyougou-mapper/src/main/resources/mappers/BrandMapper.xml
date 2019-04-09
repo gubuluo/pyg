@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pinyougou.mapper.BrandMapper">
+	<select id="findAll" resultType="Brand">
+		select * from tb_brand
+		<where>
+			<if test="name != null and name != ''">
+				 name like CONCAT('%',#{name},'%')
+			</if>
+			<if test="firstChar != null and firstChar != ''">
+				 and first_char = #{firstChar}
+			</if>
+		</where>
+		order by id asc
+	</select>
+
+	<delete id="deleteAll">
+		delete from tb_brand
+		<where>
+			<foreach collection="array" open="id in(" separator="," close=")" item="id">
+				#{id}
+			</foreach>
+		</where>
+	</delete>
+</mapper>

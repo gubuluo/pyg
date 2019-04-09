@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pinyougou.mapper.SpecificationOptionMapper">
+    <insert id="save">
+        insert into tb_specification_option(option_name,spec_id,orders) VALUES
+        <foreach collection="specificationOptions" item="so" separator=",">
+            (#{so.optionName},#{id},#{so.orders})
+        </foreach>
+    </insert>
+
+    <delete id="deleteAll">
+        delete from tb_specification_option where spec_id
+        <foreach collection="array" item="id" open="in(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="findOne" resultType="SpecificationOption">
+        select * from tb_specification_option where spec_id = #{id}
+    </select>
+</mapper>
