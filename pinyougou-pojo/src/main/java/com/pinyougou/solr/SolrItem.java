@@ -1,10 +1,12 @@
 package com.pinyougou.solr;
 
 import org.apache.solr.client.solrj.beans.Field;
+import org.springframework.data.solr.core.mapping.Dynamic;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Map;
 
 /**
  * 商品SKU实体
@@ -32,6 +34,10 @@ public class SolrItem implements Serializable {
     private String seller;
     @Field("updateTime")
     private Date updateTime;
+
+    @Dynamic
+    @Field("spec_*")
+    private Map<String, String> specMap;
 
     public Long getId() {
         return id;
@@ -103,5 +109,17 @@ public class SolrItem implements Serializable {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public Map<String, String> getSpecMap() {
+        return specMap;
+    }
+
+    public void setSpecMap(Map<String, String> specMap) {
+        this.specMap = specMap;
     }
 }

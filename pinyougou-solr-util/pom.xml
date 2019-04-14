@@ -21,11 +21,11 @@
             <artifactId>pinyougou-mapper</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <!-- 配置spring-data-solr -->
+        <!-- JSON处理工具包 -->
         <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-solr</artifactId>
-            <version>1.5.6.RELEASE</version>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
         </dependency>
+
     </dependencies>
 </project>
